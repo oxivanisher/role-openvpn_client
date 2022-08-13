@@ -25,6 +25,6 @@
 - name: enable and start openvpn systemd unit
   ansible.builtin.systemd:
     state: started
-    enabled: yes
-    daemon_reload: yes
+    enabled: true
+    daemon_reload: true
     name: "openvpn@{{ openvpn_client_filename }}.service"
