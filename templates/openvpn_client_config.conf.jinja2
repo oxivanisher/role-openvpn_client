@@ -1,0 +1,30 @@
+dev tun
+persist-tun
+persist-key
+cipher {{ openvpn_client_cipher }}
+ncp-ciphers {{ openvpn_client_ncp_ciphers }}
+auth {{ openvpn_client_auth }}
+tls-client
+client
+resolv-retry {{ openvpn_client_resolv_retry }}
+remote {{ openvpn_client_remote }}
+verify-x509-name {{ openvpn_client_verify_x509_name }}
+remote-cert-tls server
+comp-lzo no
+key-direction 1
+
+# disabled ... not trusting it
+#tun-mtu 1400
+
+script-security 2
+up "/etc/openvpn/restart_ssh.sh"
+
+<ca>
+{{ openvpn_client_ca_cert }}</ca>
+<cert>
+{{ openvpn_client_private_cert }}</cert>
+<key>
+{{ openvpn_client_private_key }}</key>
+<tls-auth>
+{{ openvpn_client_tls_key }}</tls-auth>
+

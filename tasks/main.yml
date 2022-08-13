@@ -1,2 +1,30 @@
 ---
-# tasks file for openvpn_client
+
+- name: ensure openvpn package
+  ansible.builtin.package:
+    name: openvpn
+    state: present
+
+- name: deploy ssh restart script
+  ansible.builtin.copy:
+    src: restart_ssh.sh
+    dest: /etc/openvpn/restart_ssh.sh
+    owner: root
+    group: root
+    mode: 0755
+
+- name: put config in place
+  ansible.builtin.template:
+    src: openvpn_client_config.conf.jinja2
+    dest: "/etc/openvpn/{{ openvpn_client_filename }}.conf"
+    owner: root
+    group: root
+    mode: 0640
+  notify: restart openvpn
+
+- name: enable and start openvpn systemd unit
+  ansible.builtin.systemd:
+    state: started
+    enabled: yes
+    daemon_reload: yes
+    name: "openvpn@{{ openvpn_client_filename }}.service"
