@@ -1,28 +1,27 @@
 ---
-
-- name: ensure openvpn package
+- name: Ensure openvpn package
   ansible.builtin.package:
     name: openvpn
     state: present
 
-- name: deploy ssh restart script
+- name: Deploy ssh restart script
   ansible.builtin.copy:
     src: restart_ssh.sh
     dest: /etc/openvpn/restart_ssh.sh
     owner: root
     group: root
-    mode: 0755
+    mode: "0755"
 
-- name: put config in place
+- name: Put config in place
   ansible.builtin.template:
     src: openvpn_client_config.conf.jinja2
     dest: "/etc/openvpn/{{ openvpn_client_filename }}.conf"
     owner: root
     group: root
-    mode: 0640
-  notify: restart openvpn
+    mode: "0640"
+  notify: Restart openvpn
 
-- name: enable and start openvpn systemd unit
+- name: Enable and start openvpn systemd unit
   ansible.builtin.systemd:
     state: started
     enabled: true

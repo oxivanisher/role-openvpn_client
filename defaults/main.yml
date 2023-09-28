@@ -1,5 +1,4 @@
 ---
-
 openvpn_client_filename:
 openvpn_client_cipher:
 openvpn_client_ncp_ciphers:

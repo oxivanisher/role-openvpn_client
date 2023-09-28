@@ -11,4 +11,3 @@ function restart_ssh {
 
 restart_ssh ssh.service
 restart_ssh sshd.service
-
