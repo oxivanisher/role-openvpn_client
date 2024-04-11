@@ -3,6 +3,8 @@
   ansible.builtin.package:
     name: openvpn
     state: present
+  become: true
+  become_user: root
 
 - name: Deploy ssh restart script
   ansible.builtin.copy:
@@ -11,6 +13,8 @@
     owner: root
     group: root
     mode: "0755"
+  become: true
+  become_user: root
 
 - name: Put config in place
   ansible.builtin.template:
@@ -20,6 +24,8 @@
     group: root
     mode: "0640"
   notify: Restart openvpn
+  become: true
+  become_user: root
 
 - name: Enable and start openvpn systemd unit
   ansible.builtin.systemd:
@@ -27,3 +33,5 @@
     enabled: true
     daemon_reload: true
     name: "openvpn@{{ openvpn_client_filename }}.service"
+  become: true
+  become_user: root
