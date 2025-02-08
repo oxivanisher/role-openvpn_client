@@ -10,4 +10,4 @@ openvpn_client_ca_cert:
 openvpn_client_private_cert:
 openvpn_client_private_key:
 openvpn_client_tls_key:
-openvpn_key_direction:
+openvpn_client_key_direction:
