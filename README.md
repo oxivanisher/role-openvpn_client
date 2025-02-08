@@ -1,5 +1,6 @@
 openvpn_client
 ==============
+[![Ansible Lint](https://github.com/oxivanisher/role-openvpn_client/actions/workflows/ansible-lint.yml/badge.svg)](https://github.com/oxivanisher/role-openvpn_client/actions/workflows/ansible-lint.yml)
 
 Configure a openvpn client.
 
