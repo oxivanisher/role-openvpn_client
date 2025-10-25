@@ -33,5 +33,6 @@
     enabled: true
     daemon_reload: true
     name: "openvpn@{{ openvpn_client_filename }}.service"
+  ignore_errors: "{{ ansible_check_mode }}"
   become: true
   become_user: root
